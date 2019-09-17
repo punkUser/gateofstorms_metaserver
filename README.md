@@ -16,6 +16,8 @@ compilation. Additionally there are various D-related linking issues that crop u
 builds, so I highly recommend building 64-bit binaries. On Windows this can be accomplished via "dub --arch=x86_64",
 while on most modern Linux distributions it is generally the default already.
 
+The initialize_db.sql script can be used to set up a MySQL database for use by the metaserver.
+
 Execution
 ---------
 By default the metaserver will run in a "test mode" with no database access and no web server. See metaserver_config.d
