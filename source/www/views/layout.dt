@@ -1,0 +1,64 @@
+doctype html
+html(class="no-js", lang="en")
+    head
+        meta(charset="utf-8")
+        meta(http-equiv="x-ua-compatible", content="ie=edge")
+        meta(name="viewport", content="width=device-width, initial-scale=1.0")
+        
+        title Gate of Storms
+        
+        script(src="/js/vendor/jquery.js")
+        script(src="/js/vendor/foundation.js")
+
+        link(rel="stylesheet", href="/css/foundation.css")
+        link(rel="stylesheet", href="/css/app.css")
+    body
+        nav.top-bar
+            .top-bar-left
+                ul(class="dropdown menu", data-dropdown-menu)
+                    li
+                        a(href="/") Home
+                    li.divider
+                    li
+                        a(href="/faq/") FAQ
+                    li.divider
+                    li
+                        a(href="/metaserver/") Metaserver
+                    li.divider
+                    li
+                        a(href="/games/") Games
+                    li.divider
+                    li
+                        a(href="/tournaments/") Tournaments
+
+                        //- If non-empty "recent_tournaments" was provided to the script, show the dropdown
+                        //- Otherwise, just leave it as a static link.
+                        - static if (is(typeof(global)))
+                            ul(class="menu vertical")
+                                - foreach (t; global.recent_tournaments)
+                                    li
+                                        a(href="/tournaments/#{t.short_name}/")= t.name
+                    
+                    li.divider
+                    li
+                        a(href="/account/") Account
+
+                        //- If there's a logged in user, show a dropdown with a link to their profile
+                        - static if (is(typeof(global)))
+                            - if (global.logged_in_user_id >= 0)
+                                ul(class="menu vertical")
+                                    li
+                                        a(href="/users/#{global.logged_in_user_id}/")= global.logged_in_nick_name
+                    li.divider
+
+            .top-bar-right
+                ul(class="dropdown menu", data-dropdown-menu)
+                    li
+                        a(href="http://www.myrgard.com/") Myrgard Forums
+                        
+
+        #content
+            block content
+        
+        script(src="/js/vendor/what-input.js")
+        script(src="/js/app.js")

@@ -1,0 +1,118 @@
+extends layout
+
+block content
+    #faq
+        .row
+            .large-12.columns
+                .title
+                    img(src="/faq/gos_faq_01.png", width="360", height="200", alt="Myth on Gate of Storms")
+                
+                ul
+                    li <a href="#what">What is Gate of Storms (GoS)?</a>
+                    li <a href="#how">How do I get on GoS?</a>
+                    li <a href="#register">How and why should I register?</a>
+                    li <a href="#help">I am stuck, help me? (Troubleshooting)</a>
+                    li <a href="#films">What is this "Films" icon for?</a>
+                    li <a href="#dotcommands">GoS Dot Commands</a>
+            
+                a(name="what", id="what")
+                hr
+                .section
+                    h2 What is Gate of Storms (GoS)?                
+                    p.
+                        <a href="http://www.gateofstorms.net/" target="_blank">Gate of Storms</a>
+                        (GoS) is a <a href="http://www.projectmagma.net/what/" target="_blank">Myth II:
+                        Soulblighter</a> server actively being run and developed to support new features
+                        like saving films straight to the server automatically. It is developed by one of
+                        the programmers involved in the Myth 2 updates.
+    
+                a(name="how", id="how")
+                hr
+                .section
+                    h2 How do I get on GoS?                
+                    .centered
+                        p Run Myth II <a href="http://www.projectmagma.net/downloads/" target="_blank">v1.8.0 or newer</a>. (The <a href="http://www.projectmagma.net/what/" target="_blank">demo</a> works, too.)
+                        img(src="/faq/gos_faq_02.png", width="180", height="140")
+                        p Go to Multiplayer Game.
+                        img(src="/faq/gos_faq_03.png", width="350", height="90")
+                        p Click on "Server".
+                        img(src="/faq/gos_faq_04.png", width="240", height="235")
+                        p Select GateofStormsNet. Click OK.
+                        img(src="/faq/gos_faq_05.png", width="240", height="80")
+                        p Login as a guest with any unregistered name or login as a registered user.
+                        img(src="/faq/gos_faq_06.png", width="240", height="235")
+                    p.
+                        To log on as a guest, type anything for your login that
+                        hasn't been registered and use a blank password. It does not have to be "Guest".
+                        On GoS, your login will be your player name. You can login as a guest to use
+                        whatever player name you choose. To register an account or know more about
+                        guests, read the next section.                                                
+                    .centered
+                        img(src="/faq/gos_faq_14.png", width="350", height="60")
+                        p Switch rooms to find other players and games.
+      
+                a(name="register", id="register")
+                hr
+                .section
+                    h2 How and why should I register?
+                    p.
+                        You do not need to register to play. Guests can chat and play, but registered
+                        users have a few options guests do not. Registered users can play in "Tourney"
+                        rooms. The server links the games and statistics of a registered user to their 
+                        account which is easier to find when needed.
+                    p.
+                        To register, click the "Account" button at the top and follow the instructions
+                        to link a Steam account after which you will receive credentials to log into the
+                        metaserver. You can set your nick name, team name and colors as usual in Myth 2.
+    
+                a(name="help", id="help")
+                hr
+                .section
+                    h2 I am stuck, help me? (Troubleshooting)
+                    p.
+                        If you have trouble installing or running the Myth II v1.8.0 (or newer)
+                        update. Go to the <a href="http://www.projectmagma.net/" target="_blank">Project
+                        Magma</a> forums for help.
+                    p.
+                        If you get this message, it means you need to update your version of Myth II.
+                        If you are on the latest version, just redownload it and reinstall it as it could
+                        have gotten tweaked after you got it.
+                    .centered
+                        img(src="/faq/gos_faq_10.png", width="295", height="125")
+                    p.
+                        If you can't click on the "Server" button, click on the server logo button first.
+                        Then click on "Server".
+                    .centered
+                        img(src="/faq/gos_faq_11.png", width="240", height="235")
+                    p.
+                        For other issues, post on the <a href="http://www.gateofstorms.net/" target=
+                        "_blank">Gate of Storms</a> forums or on the <a href=
+                        "http://www.projectmagma.net/" target="_blank">Project Magma</a> forums.
+    
+                a(name="films", id="films")
+                hr
+                .section
+                    h2 What is this "Films" icon for?
+                    p.
+                        Rooms with the "Films" icon will save the film of the game you played to the
+                        server. Great for tournaments and anyone who wants to show a film to someone
+                        without having to manually upload it. If you don't want a game film recorded to
+                        the server, play in a room without this icon. You can find the films in the
+                        "Games" section of the site.
+                    .centered <img src="/faq/gos_faq_12.png" width="150" height="80" />
+    
+                a(name="dotcommands", id="dotcommands")
+                hr
+                .section
+                    h2 GoS Dot Commands
+                    p.
+                        Dot commands are text based functions which are entered into chat to trigger
+                        certain actions. Myth 2 has some that can be used in the metaserver lobby and
+                        others in the pregame lobby when joining a game. The GoS metaserver has a few dot
+                        commands of its own that can be helpful. To see a list of available commands type
+                        ".help".      
+                    .centered <img src="/faq/gos_faq_13.png" width="150" height="50" />
+                    p.
+                        One of the more useful dot commands is ".games". This command tells you who is
+                        hosting which game. It also informs you on how long the game has been in
+                        progress, which can be useful for co-operative games.

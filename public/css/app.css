@@ -1,0 +1,185 @@
+h1 { font-size: 1.5rem; }
+h2 { font-size: 1.4rem; }
+h3 { font-size: 1.3rem; }
+
+.display, .row .display {
+	margin-bottom: 15px;
+}
+
+#content a {
+  color: #2f3540;
+  line-height: inherit;
+  text-decoration: underline;
+}
+
+#content a:hover, a:focus
+{
+    color: #282E37;
+	text-decoration: none;
+}
+
+body {
+	background: #f2ede4;
+	font-family: "Helvetica Neue", "Arial Unicode MS", "Helvetica", Helvetica, Arial, sans-serif;
+}
+
+#content {
+	padding: 20px 0;
+}
+
+#faq .title {
+	text-align: center;
+}
+#faq .centered {
+    text-align: center;
+}
+
+p.game_settings {
+	line-height: 1.0;
+}
+
+/************************* Nav bar *********************/
+.top-bar {
+    line-height: 45px;
+    position: relative;
+    background: #333333;
+    color: white;
+    padding: 0;
+    margin-top: 0;
+    padding-top: 0;
+    font-size: 0.9rem;
+}
+
+.dropdown.menu a {
+    padding-top: 0.1rem;
+    padding-bottom: 0.1rem;
+}
+
+.top-bar ul , .top-bar ul li a {
+    background-color: #333333;
+	color: white;
+	line-height: inherit;
+}
+
+.menu > .divider {
+    border-right: solid 1px #4e4e4e;
+}
+
+.top-bar a:hover, .top-bar a:focus
+{
+    background-color: #222222;
+}
+
+/************************ Tables *************************/
+table {
+    background: white;
+    margin-bottom: 1.25rem;
+    border: solid 1px #dddddd;
+    border-collapse: separate;
+    border-spacing: 2px;
+    font-size: 0.875rem;
+}
+
+table tbody th, table tbody td {
+    padding: 0.4rem 0.625rem;
+}
+
+table thead, table tfoot {
+  background: #d9d1c7;
+}
+
+/* Buttons in tables bloat the rows with default margin settings */
+table button.button {
+    margin: 0;
+    line-height: 0.0rem;
+}
+
+/************************* Accordion *********************/
+
+.accordion-content {
+	background-color: #f2ede4;
+}
+.accordion-title::before, .is-active > .accordion-title::before {
+	content: '';
+}
+.accordion-title {
+	background-color: #f2ede4;
+}
+
+
+/************************* Metaserver **********************/
+
+#content ul.player-list {
+    list-style: none;
+	margin-left: 0;
+	margin-bottom: 1rem;
+}
+
+#content ul.player-list li {
+	text-shadow: 1px 1px 0 #000;
+	padding-left: 3px;
+	padding-right: 3px;
+}
+
+#content ul.player-list li a {
+	color: inherit;
+	text-decoration: none;
+}
+
+#content ul.player-list .in-game {
+    color: rgba(255, 255, 255, 0.5);
+}
+
+#content ul.player-list .not-in-game {
+	color: rgba(255, 255, 255, 0.9);
+}
+
+/************************ Game table ***********************/
+
+table.game {
+	border-collapse: collapse;
+}
+table.game tbody tr td {
+	border: none;
+}
+table.game tbody tr.team_header td {
+    border: 1px dashed #aaaaaa;
+    border-width: 1px 0;
+    font-size: 1.1rem;
+}
+table.game tbody tr.even {
+    background: #ffffff;
+}
+table.game tbody tr.odd {
+    background: #f1f1f1;
+}
+table.game th,
+table.game td {
+    padding-top: 0.4rem;
+	padding-bottom: 0.4rem;
+}
+
+/******************* Player stat stable ********************/
+
+table.player_stats tbody .win_tie_loss,
+table.player_stats tbody .status {
+}
+table.player_stats tbody .score,
+table.player_stats tbody .units_killed,
+table.player_stats tbody .units_lost,
+table.player_stats tbody .units_ratio,
+table.player_stats tbody .damage_given,
+table.player_stats tbody .damage_taken,
+table.player_stats tbody .damage_ratio,
+table.player_stats tbody .score {
+    text-align: right;
+}
+
+/************************ Tabs ***********************/
+
+.tabs, .tabs-content {
+	background: #faf8f5;
+}
+.tabs-title > a {
+	font-size: inherit;
+}

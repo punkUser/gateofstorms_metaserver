@@ -1,0 +1,86 @@
+- void render_game()
+    .row
+        .medium-9.columns
+            h3 #{game.scoring_name} on #{game.map_name}
+
+            - auto host_player = game.find_host_player();
+            p.
+                Hosted by #{host_player.nick_name}<br/>
+                Began at #{game.start_date} and lasted for #{game.duration_string}
+            - if (game.recording_file_name.length > 0)
+                p
+                    a(href="download/")<>
+                        button(class="small button")<> Recording
+
+        .medium-3.columns
+            h3 Settings
+            p.game_settings
+                - auto settings_strings = game.get_settings_strings();
+                - foreach (s; settings_strings)
+                    |#{s}<br/>
+
+    .row
+        .large-12.columns
+            table.game
+                thead
+                    tr
+                        th Place
+                        th Name
+                        th Killed
+                        th Lost
+                        th Kill Ratio
+                        th Dmg Given
+                        th Dmg Taken
+                        th Dmg Ratio
+                        th Status
+                tbody
+                    - bool even = false;
+                    - foreach (team; game.teams)
+                        - auto team_status = team.status_string();
+                        - bool team_header_row = (team.players.length > 1) || team.spectators;
+
+                        - even = !even;
+                        - string row_class = (even ? "even" : "odd");
+
+                        - if (team.spectators)
+                            tr(class="#{row_class}")
+                                td -
+                                td= team.team_name
+                                td(colspan="6")
+                                td= team_status
+                        
+                        - else if (team_header_row)
+                            tr(class="#{row_class} team_header")
+                                td= team.place
+                                td= team.team_name
+                                td= team.units_killed
+                                td= team.units_lost
+                                td= team.units_ratio_string()
+                                td= team.damage_given
+                                td= team.damage_taken
+                                td= team.damage_ratio_string()
+                                td= team_status
+
+                        - foreach (player; team.players)
+                            //- If there was no team header row, make our individual player formatted like the header
+                            - row_class = row_class ~ (team_header_row ? "" : " team_header");
+
+                            tr(class="#{row_class}")
+                                td= (team_header_row || team.spectators) ? "" : to!string(team.place)
+                                td
+                                    - if (player.guest)
+                                        |#{player.nick_name}
+                                    - else
+                                        a(href="/users/#{player.user_id}/")= player.nick_name
+
+                                - if (team.spectators)
+                                    td(colspan="6")
+                                    td= team.status_string()
+                                - else
+                                    td= player.units_killed
+                                    td= player.units_lost
+                                    td= player.units_ratio_string()
+                                    td= player.damage_given
+                                    td= player.damage_taken
+                                    td= player.damage_ratio_string()
+                                    td= player.status_string(team_status)

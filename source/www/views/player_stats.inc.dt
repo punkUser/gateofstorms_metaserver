@@ -1,0 +1,27 @@
+- import std.format;
+
+- void render_player_stats()
+    table.player_stats
+        thead
+            tr
+                th.nick_name Name
+                th Win/Tie/Loss
+                th Killed
+                th Lost
+                th Kill Ratio
+                th Dmg Given
+                th Dmg Taken
+                th Dmg Ratio
+        tbody
+            - foreach (player; player_stats)
+                - auto player_url = "/users/" ~ to!string(player.user_id) ~ "/";
+                tr
+                    td.nick_name
+                        a(href="#{player_url}")= player.nick_name
+                    td.win_tie_loss #{player.win_count} / #{player.tie_count} / #{player.loss_count}
+                    td.units_killed= player.units_killed
+                    td.units_lost= player.units_lost
+                    td.units_ratio= player.units_ratio_string()
+                    td.damage_given= player.damage_given
+                    td.damage_taken= player.damage_taken
+                    td.damage_ratio= player.damage_ratio_string()

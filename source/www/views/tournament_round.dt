@@ -1,0 +1,26 @@
+extends layout
+
+block content
+    include games_list.inc
+    include player_stats.inc
+
+    - auto round_base_url = "/tournaments/" ~ tournament.short_name ~ "/rounds/" ~ to!string(round.round_id) ~ "/";
+    
+    .row
+        .large-12.columns
+            h1 <a href="/tournaments/#{tournament.short_name}/">#{tournament.short_name}</a> >> #{round.name}
+
+            h3 Games
+
+            - if (global.is_logged_in_tournament_organizer(tournament.organizer_user_id))
+                form(name="create_round_form", action="#{round_base_url}", method="post")
+                    .row
+                        .medium-9.columns
+                            input(name="add_game_id", type="number", placeholder="Enter game ID...", required, min="0", max="999999999")
+                        .medium-3.columns
+                            input.button(type="submit", value="Add Game")
+
+            - render_games_list(round_base_url ~ "games/");
+
+            h3 Player Statistics
+            - render_player_stats();

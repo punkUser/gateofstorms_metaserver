@@ -1,0 +1,45 @@
+extends layout
+
+block content
+    - import private_api : int_to_rgb_color;
+
+    .row
+        .large-12.columns
+            h1 Metaserver is #{online ? "Online" : "Offline"}
+
+            - if (online)
+                ul.accordion(data-accordion, data-multi-expand="true", data-allow-all-closed="true")
+                    - foreach (room; status.rooms)
+                        li.accordion-item(data-accordion-item)
+                            a.accordion-title(href="#")
+                                span.label.float-right #{room.players.length} players and #{room.games.length} games
+                                h3 #{room.name}
+
+                            .accordion-content(data-tab-content)
+                                .row
+                                    .large-4.small-12.columns
+                                        ul.player-list
+                                            - import std.algorithm;
+                                            - auto sorted_players = room.players.sort!("(!a.in_game && b.in_game) || ((a.in_game == b.in_game) && (a.user_id < b.user_id))");
+
+                                            - foreach (player; sorted_players)
+                                                //- 75% over blend with black if not in game, 25% if in game
+                                                - int blend_numerator = player.in_game ? 1 : 3;
+                                                - auto rgb = int_to_rgb_color(player.primary_color);
+                                                - int red   = (rgb.red   * blend_numerator) >> 10;
+                                                - int green = (rgb.green * blend_numerator) >> 10;
+                                                - int blue  = (rgb.blue  * blend_numerator) >> 10;
+
+                                                - string in_game_string = player.in_game ? "in-game" : "not-in-game";
+                                                li(class="#{in_game_string}", style="background-color: rgb(#{red}, #{green}, #{blue});")
+                                                    - if (player.guest)
+                                                        |#{player.nick_name}
+                                                    - else
+                                                        a(href="/users/#{player.user_id}/") #{player.nick_name}
+
+                                    .large-8.small-12.columns
+                                        - foreach (game; room.games)
+                                            .callout.secondary
+                                                span.label.float-right #{game.players} / #{game.max_players} playing
+                                                h3 "#{game.name}"
+                                                p #{game.scoring_name} on #{game.map_name}

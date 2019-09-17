@@ -1,0 +1,25 @@
+extends layout
+
+block content
+    - if (global.logged_in_super_admin)
+        .row
+            .large-12.columns
+                h1 Create Tournament
+                form(name="create_tournament_form", action="/tournaments/", method="post")
+                    .row
+                        .medium-7.columns
+                            label Tournament Name
+                                input(name="create_tournament_name", type="text", placeholder="Enter tournament name...", required, maxlength="32")
+                        .medium-5.columns
+                            label Tournament Short Name
+                                input(name="create_tournament_short_name", type="text", placeholder="Enter short name...", required, maxlength="12")    
+                        .medium-12.columns
+                            input.button(type="submit", value="Create Tournament")
+
+    .row
+        .large-12.columns
+            h1 Tournaments
+            ul.tournaments
+                - foreach (tournament; tournaments)
+                    li
+                        a(href="#{tournament.short_name}/") #{tournament.start_month_string} - #{tournament.name}

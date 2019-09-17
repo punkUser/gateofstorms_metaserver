@@ -1,0 +1,82 @@
+- void paginate_item(int item, int current_item)
+    - if (item == current_item)
+        li.current= item
+    - else
+        li <a href="?page=#{item}">#{item}</a>
+
+//- page indices are 1-based since they are exposed to users
+- void paginate_links(int current_page, int page_count)
+    - import std.algorithm;
+    - current_page = min(page_count, max(1, current_page));
+    ul.pagination.text-center(role="navigation", aria-label="Pagination")
+        - if (current_page > 1)
+            li.pagination-previous <a href="?page=#{current_page-1}">Previous</a>
+        - else
+            li.pagination-previous.disabled Previous
+        
+        - if (page_count <= 15)
+            //- Few enough pages to just show them all
+            - for (int page = 1; page <= page_count; ++page) 
+                - paginate_item(page, current_page);
+
+        - else if (current_page <= 8)
+            //- Current page is part of the left block
+            - for (int page = 1; page <= 12; ++page)
+                - paginate_item(page, current_page);
+            li.ellipsis
+            - paginate_item(page_count - 1, current_page);
+            - paginate_item(page_count, current_page);
+
+        - else if ((page_count - current_page) <= 7)
+            //- Current page is part of the right block
+            - paginate_item(1, current_page);
+            - paginate_item(2, current_page);
+            li.ellipsis
+            - for (int page = (page_count - 11); page <= page_count; ++page)
+                - paginate_item(page, current_page);
+            
+        - else
+            //- Left block, current page block and right block
+            - paginate_item(1, current_page);
+            - paginate_item(2, current_page);
+            li.ellipsis
+            - for (int page = (current_page - 4); page <= (current_page + 4); ++page)
+                - paginate_item(page, current_page);
+            li.ellipsis
+            - paginate_item(page_count - 1, current_page);
+            - paginate_item(page_count, current_page);
+                    
+        - if (current_page < page_count)
+            li.pagination-next <a href="?page=#{current_page+1}">Next</a>
+        - else
+            li.pagination-next.disabled Next
+
+- void render_games_list(string base_url, int current_page = 0, int page_count = 1)
+    - if (page_count > 1)
+        - paginate_links(current_page, page_count);
+
+    table
+        thead
+            tr
+                th Date
+                th Name
+                th Players
+                th Duration
+                th
+        tbody
+            - foreach (game; games)
+                - auto game_url = base_url ~ to!string(game.game_id) ~ "/";
+                tr
+                    td= game.start_date_string
+                    td
+                        a(href="#{game_url}")<> #{game.scoring_name} on #{game.map_name}
+                    td= game.player_count
+                    td= game.duration_string
+                    td
+                        - if (game.recording_file_name.length > 0)
+                            a(href="#{game_url}download/")<>
+                                button(class="small button")<> Recording
+
+    //- If we're given a page count, insert pagination navigation links
+    - if (page_count > 1)
+        - paginate_links(current_page, page_count);

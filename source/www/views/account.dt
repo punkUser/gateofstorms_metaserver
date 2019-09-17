@@ -1,0 +1,12 @@
+extends layout
+
+block content
+    .row
+        .large-12.columns
+            h1 Account
+            p.
+                Gate of Storms uses Steam accounts for sign-in. This avoids the need for separate account,
+                authentication and security measures.
+            p
+                a(href="/account/steam_login/")
+                    img(src="/account/steam_login.png")

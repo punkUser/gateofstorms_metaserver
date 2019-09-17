@@ -1,0 +1,34 @@
+{
+	"authors": [
+		"Andrew Lauritzen"
+	],
+	"copyright": "Copyright © 2019, Andrew Lauritzen",
+	"dependencies": {
+		"diet-ng": "~>1.5.0",
+		"mysql-lited": "~>0.4.9",
+		"vibe-d": "~>0.8.5"
+	},
+	"description": "Myth 2 Metaserver",
+	"mainSourceFile": "source/main.d",
+	"name": "myth_metaserver",
+	"stringImportPaths": [
+		"source/www/views/"
+	],
+	"subPackages": [
+		{
+			"importPaths": [
+				"daemon/"
+			],
+			"mainSourceFile": "daemon/main.d",
+			"name": "daemon",
+			"sourcePaths": [
+				"daemon/"
+			],
+			"targetType": "executable"
+		}
+	],
+	"targetType": "executable",
+	"versions": [
+		"VibeDisableCommandLineParsing"
+	]
+}

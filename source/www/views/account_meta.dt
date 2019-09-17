@@ -1,0 +1,22 @@
+extends layout
+
+block content
+    .row
+        .large-12.columns
+            h1 Account
+            p You are signed in as <a href="/users/#{login.user_id}/">#{login.nick_name}.</a> (<a href="/account/logout/">Sign out</a>.)
+            p In the Myth 2 client you may use the following credentials to sign into the metaserver:
+    .row
+        .small-2.columns
+            .middle.float-right User Name:
+        .small-10.columns
+            //- Important to avoid proper double-click selection of field!
+            div 
+                code #{login.user_name_token}
+    .row
+        .small-2.columns
+            .middle.float-right Password:
+        .small-10.columns
+            //- Important to avoid proper double-click selection of field!
+            div
+                code #{login.password_token}

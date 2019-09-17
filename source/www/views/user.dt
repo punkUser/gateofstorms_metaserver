@@ -1,0 +1,16 @@
+extends layout
+
+block content
+    include games_list.inc
+
+    .row
+        .large-12.columns
+            h1= user.nick_name
+            p
+                - if (user.last_login_date_string.length > 0)
+                    | Last logged in #{user.last_login_date_string}.<br/>
+                - if (user.steam_profile_url.length > 0)
+                    a(href="#{user.steam_profile_url}")= user.steam_profile_url
+
+            h2 Games
+            - render_games_list("/games/", games_current_page, games_page_count);

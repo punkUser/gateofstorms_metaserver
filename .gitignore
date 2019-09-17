@@ -1,0 +1,17 @@
+.dub
+.vs
+dub.selections.json
+*.dll
+*.visualdproj
+*.sln
+*.exe
+*.exe_cv
+*.pdb
+*.m2rec
+*.log
+recordings/
+metaserver_config.json
+www_config.json
+myth_metaserver_daemon
+myth_metaserver
+deploy.sh

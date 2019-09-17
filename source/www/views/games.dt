@@ -1,0 +1,9 @@
+extends layout
+
+block content
+    include games_list.inc
+
+    .row
+        .large-12.columns
+            h1 Games
+            - render_games_list("/games/", games_current_page, games_page_count);

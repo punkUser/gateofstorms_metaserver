@@ -1,0 +1,33 @@
+extends layout
+
+block content
+    include player_stats.inc
+    
+    .row
+        .large-12.columns
+            h1 #{tournament.name}
+
+            - if (global.is_logged_in_tournament_organizer(tournament.organizer_user_id))
+                form(name="create_round_form", action="/tournaments/#{tournament.short_name}/", method="post")
+                    .row
+                        .medium-9.columns
+                            input(name="create_round_name", type="text", placeholder="Enter round name...", required, maxlength="32")
+                        .medium-3.columns
+                            input.button(type="submit", value="Create Round")
+
+            table
+                thead
+                    tr
+                        th Start Date
+                        th Round
+                        th Games
+                tbody
+                    - foreach (round; rounds)
+                        tr
+                            td= round.start_date_string
+                            td
+                                a(href="/tournaments/#{tournament.short_name}/rounds/#{round.round_id}/")= round.name
+                            td= round.game_count
+
+            h3 Player Statistics
+            - render_player_stats();
